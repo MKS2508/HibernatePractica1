@@ -1,5 +1,7 @@
 package org.jesuitasrioja.ad1HB.persistencia;
 
+import java.util.List;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -23,7 +25,8 @@ public class Country {
 	private String localName;
 	private String governmentForm;
 	private String headOfState;
-	private Integer capital;
+	private City capital;
 	private String code2;
+	List<Countrylanguage> listOfLanguages;
 
 }
