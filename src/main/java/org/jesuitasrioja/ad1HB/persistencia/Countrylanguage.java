@@ -10,8 +10,7 @@ import lombok.NonNull;
 @AllArgsConstructor
 public class Countrylanguage {
 	
-	@NonNull private String countryCode;
-	@NonNull private String language;
+	@NonNull String language;
 	private String isOfficial;
 	private Double percentage;
 
