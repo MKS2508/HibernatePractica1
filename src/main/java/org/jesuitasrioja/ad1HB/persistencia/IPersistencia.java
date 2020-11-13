@@ -3,6 +3,10 @@ package org.jesuitasrioja.ad1HB.persistencia;
 import java.util.List;
 import java.util.Set;
 
+import org.jesuitasrioja.ad1HB.pojos.City;
+import org.jesuitasrioja.ad1HB.pojos.Country;
+import org.jesuitasrioja.ad1HB.pojos.Countrylanguage;
+
 public interface IPersistencia {
 	
 	public Set<City> listaCiudades();
