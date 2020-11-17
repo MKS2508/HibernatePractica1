@@ -121,26 +121,54 @@ public class PersistenciaHB implements IPersistencia {
 
 	@Override
 	public Boolean estaCiudadEnPais(Integer codigoCiudad, String codigoPais) {
-		// TODO Auto-generated method stub
-		return null;
+		Boolean existe = null;
+
+		SessionFactory sf = HibernateUtil.getSessionFactory();
+		Session s = sf.openSession();		
+		Query q = s.createQuery("from City where City.CountryCode = :code");//  AND City.ID = :code2
+		q.setParameter("code", codigoPais);
+		q.setParameter("code2", codigoCiudad);
+		List listaCity = q.getResultList();
+		
+		if(listaCity == null) {
+			existe = false;
+		} else {
+			existe = true;
+		}
+		
+		s.close();
+		return existe;
 	}
 
 	@Override
 	public Boolean cambiarNombreCiudad(Integer codigoCiudad, String nuevoNombre) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public void aniadirCiudad(City nuevaCiudad) {
-		// TODO Auto-generated method stub
-
+		City city = new City();
+		city = nuevaCiudad;
+		SessionFactory sf = HibernateUtil.getSessionFactory();
+		Session s = sf.openSession();
+		s.beginTransaction();
+		
+		s.save(nuevaCiudad);
+		s.getTransaction().commit();
+		s.close();
 	}
 
 	@Override
-	public void aniadirPais(Country nuevaCiudad) {
-		// TODO Auto-generated method stub
-
+	public void aniadirPais(Country nuevoCountry) {
+		Country country = new Country();
+		country = nuevoCountry;
+		SessionFactory sf = HibernateUtil.getSessionFactory();
+		Session s = sf.openSession();
+		s.beginTransaction();
+		
+		s.save(nuevoCountry);
+		s.getTransaction().commit();
+		s.close();
 	}
 
 	@Override
@@ -153,7 +181,7 @@ public class PersistenciaHB implements IPersistencia {
 
 //		Set setIdiomas = new HashSet<City>(listaIdiomas);
 		s.close();
-		
+
 		return listaIdiomas;
 	}
 

@@ -60,16 +60,17 @@ import org.jesuitasrioja.ad1HB.persistencia.PersistenciaHB;
 import org.jesuitasrioja.ad1HB.pojos.*;
 import org.jesuitasrioja.*;
 
-/**
- * Hello world!
- *
- */
-public class App {
 
+
+
+public class App {
+	
 	public static void main(String[] args) {
 		PersistenciaHB hb = new PersistenciaHB();
-
-//		
+		
+//		System.out.println(hb.estaCiudadEnPais(1, "AFG")); 		   TODO: arreglar!!!
+		
+		
 //		System.out.println(hb.getCity(699));
 //		System.out.println(hb.getCountry("ESP"));
 //		System.out.println(hb.listaCiudades());
@@ -78,6 +79,44 @@ public class App {
 //		System.out.println(hb.existePais("ESP").toString());
 //		System.out.println(hb.listaCiudades("ESP")); 				TODO: arreglar!!!
 //		System.out.println(hb.listaIdiomas("ESP"));  				TODO: arreglar!!!
+		
+		
+		
+		//city para insertar
+//		Country c = hb.getCountry("ESP");
+//		City nuevaCity = new City();
+//		nuevaCity.setName("Pedroso");
+//		nuevaCity.setCountry(c);
+//		nuevaCity.setDistrict("Madrid");
+//		nuevaCity.setPopulation(2000);
+		
+		//insertamos city
+//		hb.aniadirCiudad(nuevaCity);
+		
+		
+		//country para insertar
+//		Country nuevoCountry = new Country();
+//		nuevoCountry.setCode("AD");
+//		nuevoCountry.setName("Acceso a Datos");
+//		nuevoCountry.setContinent("Europe");
+//		nuevoCountry.setRegion("Eastern Europe");
+//		nuevoCountry.setSurfaceArea(9251);
+//		nuevoCountry.setIndepYear((short) 1969);
+//		nuevoCountry.setPopulation(10);
+//		nuevoCountry.setLifeExpectancy((float)75.7);
+//		nuevoCountry.setGnp((float) 9333.00);
+//		nuevoCountry.setGnpold((float) 9000);
+//		nuevoCountry.setLocalName("AccesoDatos");
+//		nuevoCountry.setGovernmentForm("Republic");
+//		nuevoCountry.setHeadOfState("s");
+//		nuevoCountry.setCode2("ad");
+//		hb.aniadirPais(nuevoCountry);
+		
+		
+		
+		
+		
+		
 		
 		
 //		List<Countrylanguage> lista = hb.getAllLanguages();
