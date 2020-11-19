@@ -2,6 +2,7 @@ package org.jesuitasrioja.ad1HB.persistencia;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
@@ -10,6 +11,8 @@ import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.EqualsAndHashCode.Include;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
 
@@ -17,11 +20,12 @@ import lombok.NonNull;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Table(name = "country")
 public class Country {
 		
-	@Id
-	@NonNull private String code;
+	@Id @Include
+	private String code;
 	private String name;
 	private String continent;
 	private String region;
@@ -36,8 +40,7 @@ public class Country {
 	private String headOfState;
 	
 
-	@OneToOne
-	
+	@OneToOne(cascade = CascadeType.ALL)
 	private City capital;
 	
 	private String code2;

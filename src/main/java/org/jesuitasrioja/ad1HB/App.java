@@ -67,7 +67,14 @@ public class App {
 	
 	public static void main(String[] args) {
 		PersistenciaHB hb = new PersistenciaHB();
+//		
+		Country c = hb.getPaisDeCiudad(5);
+		c = hb.getPaisDeCiudad(5);
+		System.out.println(c.getName());
+
 		
+//		System.out.println(hb.cambiarNombreCiudad(1, "prueba"));		 //era Kabul
+
 //		System.out.println(hb.estaCiudadEnPais(1, "AFG")); 		   TODO: arreglar!!!
 		
 		
@@ -77,7 +84,7 @@ public class App {
 //		System.out.println(hb.listaPaises());
 //		System.out.println(hb.existeCiudad(699).toString());
 //		System.out.println(hb.existePais("ESP").toString());
-//		System.out.println(hb.listaCiudades("ESP")); 				TODO: arreglar!!!
+//		System.out.println(hb.listaCiudades("ESP")); 				//TODO: arreglar!!!
 //		System.out.println(hb.listaIdiomas("ESP"));  				TODO: arreglar!!!
 		
 		
@@ -96,8 +103,8 @@ public class App {
 		
 		//country para insertar
 //		Country nuevoCountry = new Country();
-//		nuevoCountry.setCode("AD");
-//		nuevoCountry.setName("Acceso a Datos");
+//		nuevoCountry.setCode("AD2");
+//		nuevoCountry.setName("Acceso a Datos 2");
 //		nuevoCountry.setContinent("Europe");
 //		nuevoCountry.setRegion("Eastern Europe");
 //		nuevoCountry.setSurfaceArea(9251);
@@ -106,12 +113,12 @@ public class App {
 //		nuevoCountry.setLifeExpectancy((float)75.7);
 //		nuevoCountry.setGnp((float) 9333.00);
 //		nuevoCountry.setGnpold((float) 9000);
-//		nuevoCountry.setLocalName("AccesoDatos");
+//		nuevoCountry.setLocalName("AccesoDatos2");
 //		nuevoCountry.setGovernmentForm("Republic");
 //		nuevoCountry.setHeadOfState("s");
-//		nuevoCountry.setCode2("ad");
+//		nuevoCountry.setCode2("ad2");
 //		hb.aniadirPais(nuevoCountry);
-		
+//		
 		
 		
 		

@@ -23,7 +23,7 @@ public class PersistenciaHB implements IPersistencia {
 
 		List listaCity = q.getResultList();
 
-		Set setCity = new HashSet<City>(listaCity);
+		Set<City> setCity = new HashSet<City>(listaCity);
 		s.close();
 		return setCity;
 	}
@@ -103,20 +103,27 @@ public class PersistenciaHB implements IPersistencia {
 	public Set<City> listaCiudades(String nombrePais) {
 		SessionFactory sf = HibernateUtil.getSessionFactory();
 		Session s = sf.openSession();
-
-		Query q = s.createQuery("from City c where c.CountryCode = :code");
-		q.setParameter("code", nombrePais);
+		Query q = s.createQuery("from City ci where ci.country.name= :name");
+		q.setParameter("name", nombrePais);
 		List listaCity = q.getResultList();
 
-		Set setCity = new HashSet<City>(listaCity);
+		Set<City> setCity = new HashSet<City>(listaCity);
 		s.close();
 		return setCity;
 	}
 
 	@Override
 	public Country getPaisDeCiudad(Integer codigoCiudad) {
-		// TODO Auto-generated method stub
-		return null;
+		SessionFactory sf = HibernateUtil.getSessionFactory();
+		Session s = sf.openSession();
+
+		City ciudad = s.get(City.class, codigoCiudad);
+
+		Country pais = ciudad.getCountry();
+//		pais.getName();
+		s.close();
+
+		return pais;
 	}
 
 	@Override
@@ -124,25 +131,37 @@ public class PersistenciaHB implements IPersistencia {
 		Boolean existe = null;
 
 		SessionFactory sf = HibernateUtil.getSessionFactory();
-		Session s = sf.openSession();		
-		Query q = s.createQuery("from City where City.CountryCode = :code");//  AND City.ID = :code2
-		q.setParameter("code", codigoPais);
-		q.setParameter("code2", codigoCiudad);
-		List listaCity = q.getResultList();
-		
-		if(listaCity == null) {
-			existe = false;
-		} else {
+		Session s = sf.openSession();
+		City ciudad = s.get(City.class, codigoCiudad);
+		Country pais = null;
+
+		if (ciudad.getCountry().getCode() == codigoPais) {
 			existe = true;
+		} else {
+			existe = false;
 		}
-		
+
 		s.close();
 		return existe;
 	}
 
 	@Override
 	public Boolean cambiarNombreCiudad(Integer codigoCiudad, String nuevoNombre) {
-		return null;
+		Boolean bol = null;
+		City c = new City();
+		SessionFactory sf = HibernateUtil.getSessionFactory();
+		Session s = sf.openSession();
+		c = s.get(City.class, codigoCiudad);
+		c.setName(nuevoNombre);
+
+		s.update(c);
+		if (c.getName() == nuevoNombre) {
+			bol = true;
+		} else {
+			bol = false;
+		}
+		s.close();
+		return bol;
 	}
 
 	@Override
@@ -152,7 +171,7 @@ public class PersistenciaHB implements IPersistencia {
 		SessionFactory sf = HibernateUtil.getSessionFactory();
 		Session s = sf.openSession();
 		s.beginTransaction();
-		
+
 		s.save(nuevaCiudad);
 		s.getTransaction().commit();
 		s.close();
@@ -165,7 +184,7 @@ public class PersistenciaHB implements IPersistencia {
 		SessionFactory sf = HibernateUtil.getSessionFactory();
 		Session s = sf.openSession();
 		s.beginTransaction();
-		
+
 		s.save(nuevoCountry);
 		s.getTransaction().commit();
 		s.close();
@@ -186,7 +205,7 @@ public class PersistenciaHB implements IPersistencia {
 	}
 
 	@Override
-	public Set<Countrylanguage> listaIdiomas(String codigoPais) {
+	public Set<Countrylanguage> listaIdiomas(String codigoPais) { // sin hql
 		SessionFactory sf = HibernateUtil.getSessionFactory();
 		Session s = sf.openSession();
 
